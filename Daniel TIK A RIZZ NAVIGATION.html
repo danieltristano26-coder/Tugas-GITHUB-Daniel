@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Control layout and scaling on different devices -->
+    <title>Image Gallery</title> <!-- Title on the tab -->
+    <style>
+        /* Basic styling for body and container */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #7d0081;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #4CAF50;
+            margin-right: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Main content styling */
+        main {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide sections by default */
+        }
+
+        .active {
+            display: block; /* Show the active section */
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Gallery container styling */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Image info styling */
+        .image-info {
+            display: none;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .image-info.active {
+            display: block;
+        }
+
+        .gallery-item:hover .image-info {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">🤡</div>
+        <h1>Image Gallery</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('gallery')">Gallery</a>
+        <a href="#" onclick="showSection('about')">About</a>
+        <a href="#" onclick="showSection('contact')">Contact</a>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- Home Section -->
+        <main id="home" class="active">
+            <h2>Welcome To My Website</h2>
+            <p>This is a collection of all my SIGMA photos</p>
+            <p>SKIBIDI GYATT RIZZ MALE ALPHA</p>
+        </main>
+
+        <!-- Gallery Section -->
+        <main id="gallery">
+            <h2>Image Gallery</h2>
+            <div class="gallery" id="gallery-container">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <!-- About Section -->
+        <main id="about">
+            <h2>About Me</h2>
+            <p>My Name Is SIGMA MALE DANIEL RIZZ Enjoy my rizz website 😜</p>
+            <p>MY HOBBY IS RIZZ A GIRL AND MEWING 🤫🧏🏻‍♂️ </p>
+        </main>
+
+        <!-- Contact Section -->
+        <main id="contact">
+            <h2>Contact Us</h2>
+            <p>Instagram: Kai Cenat</p>
+            <p>Whatsapp: 085773375591</p>
+            <p>Email: google.com</p>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ambatukam AWHH AWHH</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('main');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the clicked section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // JavaScript to dynamically add gallery images
+        document.addEventListener('DOMContentLoaded', () => {
+            const imagePaths = [
+                { src: 'data:image/png;base64,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', alt: 'Image 1', info: 'Sigma' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJkRBOgkfsPgUaBbPupL2qsS3i6TUAMVA1QQ&s', alt: 'Image 2', info: 'Thomas Slebew' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxWI5OUqaVMLsvpzan_pPzColEtCNoEx3mw&s', alt: 'Image 3', info: 'Muiwing' },
+                { src: 'https://images.fineartamerica.com/images/artworkimages/medium/3/kachow-cars-grady-moore-transparent.png', alt: 'Image 4', info: 'KACOWWWW' },
+                { src: 'https://m.media-amazon.com/images/I/41i6Qx-AOYL._UXNaN_FMjpg_QL85_.jpg', alt: 'Image 5', info: 'GYATT' },
+                { src: 'https://img.era.id/Lpx9D_ZbyHL7tx62Iepu01cH5O45yUN5okJ7ObdniA0/rs:auto:1280:720/g:sm/bG9jYWw6Ly8vL3B1Ymxpc2hlcnMvMTMyNjQxL2JvZHlfaW1hZ2VfMjAyMzA4MDQxNS5wbmc.jpg', alt: 'Image 6', info: 'Skibidi Dop Dop' },
+                { src: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8482c097a7b8a9b07c5a539ee1', alt: 'Image 6', info: 'RIZZZ' },
+                { src: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Flag_of_Ohio.svg', alt: 'Image 6', info: 'OHIO CITY' },
+            ];
+
+            const galleryContainer = document.getElementById('gallery-container');
+
+            imagePaths.forEach((path, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+
+                const img = document.createElement('img');
+                img.src = path.src;
+                img.alt = path.alt;
+
+                const info = document.createElement('div');
+                info.classList.add('image-info');
+                info.textContent = path.info;
+
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(info);
+                galleryContainer.appendChild(galleryItem);
+
+                // Add click event listener to show image info
+                galleryItem.addEventListener('click', () => {
+                    // Toggle visibility of the image-info div
+                    const infoDiv = galleryItem.querySelector('.image-info');
+                    infoDiv.classList.toggle('active');
+                });
+            });
+
+            // Placeholder background color
+            galleryContainer.appendChild(placeholderItem);
+        });
+    </script>
+
+</body>
+</html>
